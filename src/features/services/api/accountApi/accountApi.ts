@@ -20,6 +20,7 @@ export const accountApi = createApi({
       providesTags: ['Account'],
     }),
 
+    // update query
     updateAccount: builder.mutation<void, UpdateAccountReqPayload>({
       query: (body) => {
         return {
