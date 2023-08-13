@@ -34,6 +34,12 @@ export const accountApi = createApi({
           },
         }
       },
+      invalidatesTags: ['Account'],
+
+      async onQueryStarted(_args, { queryFulfilled }) {
+        handleOnQueryStartedWithToast(queryFulfilled, { action: 'update' })
+      },
+    }),
 
     changeAccountPassword: builder.mutation<
       void,

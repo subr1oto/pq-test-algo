@@ -1,10 +1,8 @@
 import { GroupBase, StylesConfig, ThemeConfig } from 'react-select'
 import { Spinner } from 'reactstrap'
 import { SelectOption } from 'src/features/types'
-import { ThemeConfigurations } from 'src/features/config/ThemeConfig';
 
 export const SelectLoading = () => <Spinner className="my-5" />
-const mixLayout = localStorage.getItem('mix_background_layout') || ThemeConfigurations.data.color.mix_background_layout;
 
 export const selectCustomStyles: StylesConfig<SelectOption, false, GroupBase<SelectOption>> = {
   control: (styles) => ({
@@ -12,7 +10,6 @@ export const selectCustomStyles: StylesConfig<SelectOption, false, GroupBase<Sel
     border: 'none!important',
     boxShadow: 'none!important',
     minHeight: '33px',
-    backgroundColor: mixLayout=='dark-only' ? '#0f2642' : ''
   }),
   indicatorsContainer: (styles) => ({
     ...styles,

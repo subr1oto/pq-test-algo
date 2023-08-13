@@ -1,14 +1,12 @@
+import React from 'react'
+import Login from '../pages/auth/login/Login'
+import ChangePassword from '../pages/auth/password-recovery/ChangePassword'
 import ForgotPassword from '../pages/auth/password-recovery/ForgotPassword'
-import { ACCOUNT_BASIC_PROFILE_URL ,ACCOUNT_CHANGE_PASSWORD_URL } from '../pages/account/constants'
-import { MainLayout } from '../layouts'
 
 export const authRoutes = [
-  { path: `${process.env.PUBLIC_URL}/links`, Component: <MainLayout/> },
+  { path: `${process.env.PUBLIC_URL}/login`, Component: <Login /> },
   { path: `${process.env.PUBLIC_URL}/forgot-password`, Component: <ForgotPassword /> },
-  { path: `${process.env.PUBLIC_URL}/account`, Component: <MainLayout />},
-  { path: `${process.env.PUBLIC_URL}/settings`, Component: <MainLayout />},
-  { path: `${process.env.PUBLIC_URL}${ACCOUNT_CHANGE_PASSWORD_URL}`, Component: <MainLayout/> },
-  { path: `${process.env.PUBLIC_URL}${ACCOUNT_BASIC_PROFILE_URL}`, Component: <MainLayout/> },
+  { path: `${process.env.PUBLIC_URL}/change-password`, Component: <ChangePassword /> },
   // { path: `${process.env.PUBLIC_URL}/pages/authentication/register-simple`, Component: <RegisterSimple /> },
   // { path: `${process.env.PUBLIC_URL}/pages/authentication/register-bg-img`, Component: <RegisterBgImg /> },
   // { path: `${process.env.PUBLIC_URL}/pages/authentication/register-video`, Component: <RegisterVideo /> },

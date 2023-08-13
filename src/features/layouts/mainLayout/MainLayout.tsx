@@ -1,5 +1,5 @@
-import { Fragment, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { Fragment, useEffect } from 'react'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { scrollToTop } from 'src/features/utils/functions/scrollToTop'
 import { useAppSelector } from '../../../app/hooks'
@@ -12,19 +12,13 @@ import Taptop from './TapTop'
 import ThemeCustomizer from './ThemeCustomizer'
 import classNames from 'classnames'
 import styles from './MainLayout.module.css'
-import AccountBasicProfile from 'src/features/pages/account/AccountBasicProfile'
-import Links from 'src/features/pages/links'
-import Settings from 'src/features/pages/settings'
-import AccountChangePassword from 'src/features/pages/account/AccountChangePassword'
 
 function MainLayout() {
   const sidebar_types = useAppSelector((state: RootState) => state.themeCustomizer.sidebar_types)
   const settings = useAppSelector((state: RootState) => state.themeCustomizer.settings)
   const settings1 = localStorage.getItem('sidebar_Settings') || settings
   const sidebar_types1 = localStorage.getItem('sidebar_types') || sidebar_types
-  const location = useLocation();
-  console.log(location.pathname.split('/'));
-  const pageName = location.pathname.split('/').length > 2 ? location.pathname.split('/')[2] : location.pathname.split('/')[1];
+  const location = useLocation()
 
   useEffect(() => {
     setTimeout(scrollToTop, 50)
@@ -65,7 +59,7 @@ function MainLayout() {
               [styles.pageBodySidebarExpanded]: !toggleIcon,
             })}
           >
-            {pageName == 'account' || pageName == 'basic-profile' ? <AccountBasicProfile/> : (pageName=='settings' ? <Settings/> : (pageName == 'change-password' ? <AccountChangePassword/> : <Links/>))}
+            <Outlet />
           </div>
           <Footer />
         </div>
