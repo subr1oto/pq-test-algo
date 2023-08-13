@@ -7,7 +7,7 @@ const PrivateRoutes = () => {
 
   useEffect(() => {
     if (authenticated === 'false' || authenticated === null) {
-      return navigate(`${process.env.PUBLIC_URL}/login`)
+      return navigate(`${process.env.PUBLIC_URL}/links`)
     }
   })
   return <>{<Outlet />}</>

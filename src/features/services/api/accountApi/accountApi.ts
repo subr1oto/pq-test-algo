@@ -34,11 +34,21 @@ export const accountApi = createApi({
           },
         }
       },
-      invalidatesTags: ['Account'],
-
-      async onQueryStarted(_args, { queryFulfilled }) {
-        handleOnQueryStartedWithToast(queryFulfilled, { action: 'update' })
-      },
+      
+      async onQueryStarted(patch, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          accountApi.util.updateQueryData('getAccount', undefined , (draft) => {
+            draft.first_name = patch.first_name
+            draft.last_name = patch.last_name
+          })
+          )
+          try {
+            await handleOnQueryStartedWithToast(queryFulfilled, { action: 'update' });
+          } catch {
+            patchResult.undo();
+          }
+        },
+        invalidatesTags: ['Account'],
     }),
 
     changeAccountPassword: builder.mutation<
